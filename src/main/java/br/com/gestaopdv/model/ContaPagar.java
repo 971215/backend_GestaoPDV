@@ -27,6 +27,7 @@ public class ContaPagar implements Serializable {
     private Integer id;
     private String descricao;
     private Date dataVencimento;
+    private String referencia;
     //@ManyToOne
     //private Despesa despesa;
 
@@ -53,5 +54,15 @@ public class ContaPagar implements Serializable {
     public void setDataVencimento(Date dataVencimento) {
         this.dataVencimento = dataVencimento;
     }
+
+    public String getReferencia() {
+        return referencia;
+    }
+
+    public void setReferencia(String referencia) {
+        this.referencia = referencia;
+    }
+    
+    
 
  }

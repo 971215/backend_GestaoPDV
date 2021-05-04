@@ -5,8 +5,8 @@
  */
 package br.com.gestaopdv.dao;
 
-import br.com.gestaopdv.model.Despesa;
-import br.com.gestaopdv.model.Usuario;
+import br.com.gestaopdv.model.Orcamento;
+import br.com.gestaopdv.model.Produto;
 import br.com.gestaopdv.util.JpaUtil;
 import java.util.List;
 import java.util.logging.Level;
@@ -17,14 +17,14 @@ import javax.persistence.EntityManager;
  *
  * @author andre
  */
-public class DespesaDAO implements OperacaoDAO<Despesa>{
+public class OrcamentoDAO implements OperacaoDAO<Orcamento>{
 
-     private static EntityManager sessao = JpaUtil.getEntityManager();
+    private static EntityManager sessao = JpaUtil.getEntityManager();
 
-    private Despesa despesa;
+    private Orcamento orcamento;
 
     @Override
-    public void insert(Despesa entity) {
+    public void insert(Orcamento entity) {
         sessao.getTransaction().begin();
         sessao.persist(entity);
         sessao.getTransaction().commit();
@@ -32,7 +32,7 @@ public class DespesaDAO implements OperacaoDAO<Despesa>{
     }
 
     @Override
-    public void update(Despesa entity) {
+    public void update(Orcamento entity) {
         sessao.getTransaction().begin();
         sessao.merge(entity);
         sessao.getTransaction().commit();
@@ -42,40 +42,31 @@ public class DespesaDAO implements OperacaoDAO<Despesa>{
     @Override
     public void delete(int id) {
         try {
-            despesa = selectOne(id);
+            orcamento = selectOne(id);
             sessao.getTransaction().begin();
-            sessao.remove(despesa);
+            sessao.remove(orcamento);
             sessao.getTransaction().commit();
         } catch (Exception ex) {
             sessao.getTransaction().rollback();
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrcamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         sessao.close();
     }
 
     @Override
-    public Despesa selectOne(int id) throws Exception {
-        return sessao.find(Despesa.class, id);
+    public Orcamento selectOne(int id) throws Exception {
+        return sessao.find(Orcamento.class, id);
     }
 
     @Override
-    public List<Despesa> selectAll() {
-        List<Despesa> despesas = null;
+    public List<Orcamento> selectAll() {
+        List<Orcamento> orcamentos = null;
         try {
-            despesas = sessao.createQuery("from Despesa u").getResultList();
+            orcamentos = sessao.createQuery("from Orcamento u").getResultList();
         } catch (Exception e) {
             System.err.println(e);
         }
-        return despesas;
+        return orcamentos;
     }
     
-    public static void main(String[] args) {
-        DespesaDAO despesaDAO = new DespesaDAO();
-        Despesa d = new Despesa();
-        d.setId(null);
-        d.setMes(3);
-        d.setAno(2021);
-        d.setTotalDespesa(0.0);
-        despesaDAO.insert(d);
-    }
 }

@@ -93,7 +93,9 @@ public class Produto {
         this.quantidadeVendido = quantidadeVendido;
         this.categoria = categoria;
     }
-    
+    public Produto(){
+        
+    }
     
     
     

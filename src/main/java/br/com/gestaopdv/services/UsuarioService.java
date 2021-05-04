@@ -20,34 +20,13 @@ import javax.swing.JOptionPane;
  *
  * @author andre
  */
-public class UsuarioService {
+public class UsuarioService extends GenericService<Usuario>{
 
-    private UsuarioDAO usuarioDAO;
     private AutenticacaoDAO autenticacaoDAO;
 
-    public UsuarioService(UsuarioDAO usuarioDAO, AutenticacaoDAO autenticacaoDAO) {
-        this.usuarioDAO = usuarioDAO;
+    public UsuarioService(OperacaoDAO operacaoDAO, AutenticacaoDAO autenticacaoDAO) {
+        this.operacaoDAO = operacaoDAO;
         this.autenticacaoDAO = autenticacaoDAO;
-    }
-
-    public void salvar(Usuario usuario) {
-        usuarioDAO.insert(usuario);
-    }
-
-    public void alterar(Usuario usuario) {
-        usuarioDAO.update(usuario);
-    }
-
-    public Usuario consultar(int id) throws Exception {
-        return usuarioDAO.selectOne(id);
-    }
-
-    public void remover(int id) {
-        usuarioDAO.delete(id);
-    }
-
-    public List<Usuario> listar() {
-        return usuarioDAO.selectAll();
     }
 
     public Usuario getUsuario(String login, String senha) throws RuntimeException {

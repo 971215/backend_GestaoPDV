@@ -6,12 +6,10 @@
 package br.com.gestaopdv.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,15 +17,14 @@ import javax.persistence.Table;
  * @author andre
  */
 @Entity
-@Table(name = "tb_despesa")
-public class Despesa implements Serializable {
+@Table(name = "tb_orcamento")
+public class Orcamento implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Double totalDespesa;
-    private Integer mes;
-    private Integer ano;
+    private Double valor;
+    private String referencia;
 
     public Integer getId() {
         return id;
@@ -37,31 +34,21 @@ public class Despesa implements Serializable {
         this.id = id;
     }
 
-    public Double getTotalDespesa() {
-        return totalDespesa;
+    public Double getValor() {
+        return valor;
     }
 
-    public void setTotalDespesa(Double totalDespesa) {
-        this.totalDespesa = totalDespesa;
+    public void setValor(Double valor) {
+        this.valor = valor;
     }
 
-    public Integer getMes() {
-        return mes;
+    public String getReferencia() {
+        return referencia;
     }
 
-    public void setMes(Integer mes) {
-        this.mes = mes;
+    public void setReferencia(String referencia) {
+        this.referencia = referencia;
     }
-
-    public Integer getAno() {
-        return ano;
-    }
-
-    public void setAno(Integer ano) {
-        this.ano = ano;
-    }
-
-    
     
     
 }
